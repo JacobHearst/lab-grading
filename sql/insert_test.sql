@@ -41,7 +41,22 @@ INSERT INTO Log (UserID, LogDate, Description) VALUES
     ("2020-04-19, 16:53:14","GRADE");
 
 -- Course test data
+INSERT INTO Course (Name, UserId) VALUES
+    ("Algorithms",2465),
+    ("Data structure",1876),
+    ("Networking fundamentals",8723),
+    ("Web development",4430),
+    ("Computer Science",7456),
+    ("Software engineering principles",1290)
 
 -- Section test data
+INSERT INTO Section (CourseId, DisplayName) VALUES
+    (1876, "Section1"),
+    (8723, "Section2"),
+    (4430, "Section3"),
+    (7456, "Section4"),
+    (1290, "Section5"),
+    (2465, "Section6")
 
 -- Skill test data
+INSERT INTO Skill (SectionId, Topic) VALUES
