@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>Lab Search</title>
+		<link rel="stylesheet" type="text/css" href="style_search.css">
+	</head>
+
+	<body>
+		<h1>Lab Grading Tool</h1>
+		<h2>Programmed by: Agile Experience Group 4</h2>
+		<h4><a href="../">Return to main page.</a></h4>
+		
+		<br>
+		<hr>
+		
+		<h2>Search For Lab:</h2>
+		
+		<form action="search.php" method="post">
+			<select name="search-type" size="1">
+				<option selected value="">Search by...</option>
+				<option value="LabName">Lab Name</option>
+				<option value="StudentName">Student Name</option>
+				<option value="Professor">Professor</option>
+				<option value="Course">Course</option>
+			</select>
+
+			<input type="text" name="search">
+
+			<input type="submit" value="Submit">
+		</form>
+			
+		<br>
+			
+		
+	</body>
+</html>
