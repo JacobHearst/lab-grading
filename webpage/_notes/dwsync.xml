@@ -3,4 +3,5 @@
 <file name=".bash_logout" server="144.13.22.59" local="132314099120000000" remote="132314099120000000" Dst="2" />
 <file name=".bashrc" server="144.13.22.59" local="132314099120000000" remote="132314099120000000" Dst="2" />
 <file name=".profile" server="144.13.22.59" local="132314099120000000" remote="132314099120000000" Dst="2" />
+<file name=".wget-hsts" server="144.13.22.59" local="132319684920000000" remote="132319684920000000" Dst="2" />
 </dwsync>
