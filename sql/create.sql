@@ -7,13 +7,6 @@ CREATE TABLE User (
     Pin int
 );
 
-CREATE TABLE Log (
-    UserID int NOT NULL,
-    LogDate DateTime DEFAULT CURRENT_TIMESTAMP,
-    Description nvarchar(200),
-    FOREIGN KEY (UserId) REFERENCES User(Id)
-);
-
 CREATE TABLE Course (
     Id int NOT NULL AUTO_INCREMENT PRIMARY KEY,
     UserId int NOT NULL,
@@ -38,6 +31,21 @@ CREATE TABLE Lab (
     FOREIGN KEY (SectionId) REFERENCES Section(Id)
 );
 
+CREATE TABLE Grade (
+    LabId int NOT NULL,
+    UserId int NOT NULL,
+    Score TINYINT,
+    FOREIGN KEY (UserId) REFERENCES User(Id),
+    FOREIGN KEY (LabId) REFERENCES Lab(Id)
+);
+
+CREATE TABLE Skill (
+    Id int NOT NULL AUTO_INCREMENT PRIMARY KEY,
+    SectionId nvarchar(30),
+    Topic nvarchar(50),
+    FOREIGN KEY (SectionID) REFERENCES Section(Id)
+);
+
 CREATE TABLE Notes (
     Id int NOT NULL AUTO_INCREMENT PRIMARY KEY,
     LabId int,
@@ -49,17 +57,9 @@ CREATE TABLE Notes (
     FOREIGN KEY (SkillId) REFERENCES Skill(Id)
 );
 
-CREATE TABLE Skill (
-    Id int NOT NULL AUTO_INCREMENT PRIMARY KEY,
-    SectionId nvarchar(30),
-    Topic nvarchar(50),
-    FOREIGN KEY (SectionID) REFERENCES Section(Id)
-);
-
-CREATE TABLE Grade (
-    LabId int NOT NULL,
-    UserId int NOT NULL,
-    Score TINYINT,
-    FOREIGN KEY (UserId) REFERENCES User(Id),
-    FOREIGN KEY (LabId) REFERENCES Lab(Id)
+CREATE TABLE Log (
+    UserID int NOT NULL,
+    LogDate DateTime DEFAULT CURRENT_TIMESTAMP,
+    Description nvarchar(200),
+    FOREIGN KEY (UserId) REFERENCES User(Id)
 );
