@@ -55,3 +55,11 @@ CREATE TABLE Skill (
     Topic nvarchar(50),
     FOREIGN KEY (SectionID) REFERENCES Section(Id)
 );
+
+CREATE TABLE Grade (
+    LabId int NOT NULL,
+    UserId int NOT NULL,
+    Score TINYINT,
+    FOREIGN KEY (UserId) REFERENCES User(Id),
+    FOREIGN KEY (LabId) REFERENCES Lab(Id)
+);
