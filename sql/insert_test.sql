@@ -47,7 +47,7 @@ INSERT INTO Course (Name, UserId) VALUES
     ("Networking fundamentals",8723),
     ("Web development",4430),
     ("Computer Science",7456),
-    ("Software engineering principles",1290)
+    ("Software engineering principles",1290);
 
 -- Section test data
 INSERT INTO Section (CourseId, DisplayName) VALUES
@@ -56,7 +56,15 @@ INSERT INTO Section (CourseId, DisplayName) VALUES
     (4430, "Section3"),
     (7456, "Section4"),
     (1290, "Section5"),
-    (2465, "Section6")
+    (2465, "Section6");
 
 -- Skill test data
 INSERT INTO Skill (SectionId, Topic) VALUES
+
+INSERT INTO Grade (LabId, UserId, Score) VALUES
+    (1, 1, 10),
+    (2, 2, 8),
+    (3, 3, 3),
+    (4, 4, 20),
+    (5, 5, 19),
+    (6, 6, 5);
