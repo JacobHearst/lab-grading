@@ -26,6 +26,16 @@ INSERT INTO Section (Id, CourseId, DisplayName) VALUES
     (4, 4, "Section4"),
     (5, 5, "Section5"),
     (6, 6, "Section6");
+    
+-- UserSection test data
+INSERT INTO UserSection (UserId, SectionId) VALUES
+    (1, 1),
+    (2, 2),
+    (3, 3),
+    (5, 4),
+    (8, 5),
+    (9, 6),
+    (10, 1);
 
 -- Lab test data
 INSERT INTO Lab (Id, Name, Description, DueDate, Score, SectionId) VALUES
