@@ -4,19 +4,19 @@ INSERT INTO User (Id, IsProfessor, FirstName, LastName, Email, Pin) VALUES
     (2, False, "Kiran", "Cotting", "cottingk3368@my.uwstout.edu",3734),
     (3, False, "Terence", "Regan", "regant4187@my.uwstout.edu",7315),
     (4, True, "Jocelyn", "Richardt", "richardtj@uwstout.edu",1317),
-    (5, False, "Scott", "Turner", "richardtj@uwstout.edu",2315),
+    (5, True, "Scott", "Turner", "turners@uwstout.edu",2315),
     (8, False, "Joseph", "Matzelle", "matzellej4550@my.uwstout.edu",6723),
     (9, False, "Caleb", "Rudolph", "rudolphc3824@my.uwstout.edu",2161),
     (10, False, "Alexander", "Trask", "traska6984@my.uwstout.edu",3217);
 
 -- Course test data
 INSERT INTO Course (Id, Name, UserId) VALUES
-    (1, "Algorithms", 1),
-    (2, "Data structure", 2),
-    (3, "Networking fundamentals", 3),
+    (1, "Algorithms", 4),
+    (2, "Data structure", 5),
+    (3, "Networking fundamentals", 4),
     (4, "Web development", 5),
-    (5, "Computer Science", 8),
-    (6, "Software engineering principles", 9);
+    (5, "Computer Science", 4),
+    (6, "Software engineering principles", 5);
 
 -- Section test data
 INSERT INTO Section (Id, CourseId, DisplayName) VALUES
