@@ -15,10 +15,18 @@ CREATE TABLE Course (
 );
 
 CREATE TABLE Section (
-    Id nvarchar(30) NOT NULL PRIMARY KEY,
+    Id Integer(11) NOT NULL PRIMARY KEY,
     CourseId int NOT NULL,
     DisplayName nvarchar(30),
     FOREIGN KEY (CourseId) REFERENCES Course(Id)
+);
+
+CREATE TABLE UserSection (
+  UserId Integer(11) NOT NULL,
+  SectionId Integer(11) NOT NULL, 
+  PRIMARY KEY (UserId, SectionId),
+  FOREIGN KEY (UserId) REFERENCES User(Id),
+  FOREIGN KEY (SectionId) REFERENCES Section(Id)
 );
 
 CREATE TABLE Lab (
@@ -27,7 +35,7 @@ CREATE TABLE Lab (
     Description nvarchar(200),
     DueDate DateTime,
     Score TINYINT,
-    SectionId nvarchar(30),
+    SectionId Integer(11),
     FOREIGN KEY (SectionId) REFERENCES Section(Id)
 );
 
@@ -41,7 +49,7 @@ CREATE TABLE Grade (
 
 CREATE TABLE Skill (
     Id int NOT NULL AUTO_INCREMENT PRIMARY KEY,
-    SectionId nvarchar(30),
+    SectionId Integer(11),
     Topic nvarchar(50),
     FOREIGN KEY (SectionID) REFERENCES Section(Id)
 );
