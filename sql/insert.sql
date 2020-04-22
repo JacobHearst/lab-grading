@@ -29,14 +29,14 @@ INSERT INTO Section (Id, CourseId, DisplayName) VALUES
 
 -- Lab test data
 INSERT INTO Lab (Id, Name, Description, DueDate, Score, SectionId) VALUES
-    (1, "Hello World","Student's first lab.",2020-09-20,10, 1),
-    (2, "Variables","\"Variable declaration, initialization, and calls.\"",2020-10-07,15, 2),
-    (3, "Conditionals","\"If, else if, and else.\"",2020-10-28,15, 3),
-    (4, "Hello World","Student's first lab.",2020-09-20,10, 4),
-    (5, "Loops","For and while loops.",2020-11-14,30, 5),
-    (6, "Variables","\"Variable declaration, initialization, and calls.\"",2020-10-07,15, 6),
-    (7, "Conditionals","\"If, else if, and else.\"",2020-10-28,15, 5),
-    (8, "Loops","For and while loops.",2020-11-14,30, 4);
+    (1, "Hello World","Student''s first lab.", STR_TO_DATE("2020-09-20", "%Y-%m-%d"),10, 1),
+    (2, "Variables","\"Variable declaration, initialization, and calls.\"", STR_TO_DATE("2020-10-07", "%Y-%m-%d"),15, 2),
+    (3, "Conditionals","\"If, else if, and else.\"", STR_TO_DATE("2020-10-28", "%Y-%m-%d"),15, 3),
+    (4, "Hello World","Student''s first lab.", STR_TO_DATE("2020-09-20", "%Y-%m-%d"),10, 4),
+    (5, "Loops","For and while loops.", STR_TO_DATE("2020-11-14", "%Y-%m-%d"),30, 5),
+    (6, "Variables","\"Variable declaration, initialization, and calls.\"", STR_TO_DATE("2020-10-07", "%Y-%m-%d"),15, 6),
+    (7, "Conditionals","\"If, else if, and else.\"", STR_TO_DATE("2020-10-28", "%Y-%m-%d"),15, 5),
+    (8, "Loops","For and while loops.", STR_TO_DATE("2020-11-14", "%Y-%m-%d"),30, 4);
 
 -- Grade test data
 INSERT INTO Grade (UserId, LabId, Score) VALUES
