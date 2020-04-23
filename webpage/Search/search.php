@@ -113,8 +113,58 @@
 		<hr>
 		
 		<?php 
-		//DO THE SEARCH TO THE DATABASE HERE USING THE $searchTerm and $searchType 
-		//Save the results of the query into $results 
+		include "../database.php";
+
+		$query = "SELECT L.* FROM Lab L WHERE ";
+		$params = null;
+		switch ($searchType) {
+			case 'LabName':
+				$query .= 'Name LIKE ?';
+				$params = array("$searchTerm%");
+				break;
+			case 'StudentName':
+				$query .= 'EXISTS (SELECT 1 FROM UserSection US WHERE
+					(EXISTS (SELECT 1 FROM User U WHERE
+						(U.FirstName LIKE ? OR U.LastName LIKE ?)
+						AND (US.userId = U.id)
+					))
+					AND (L.sectionId = US.sectionId)
+				)';
+				$params = array("$searchTerm%", "$searchTerm%");
+				break;
+			case 'Professor':
+				$query .= "EXISTS (SELECT 1 FROM Section S WHERE
+					(EXISTS (SELECT 1 FROM Course C WHERE
+						(EXISTS (SELECT 1 FROM User U WHERE
+							(
+								(U.FirstName LIKE ? OR U.LastName LIKE ?) 
+								AND U.IsProfessor = True
+							)
+							AND (C.UserId = U.Id)
+						)) 
+						AND (S.courseId = C.Id)
+					)) 
+					AND (L.sectionId = S.Id)
+				)";
+				$params = array("$searchTerm%", "$searchTerm%");
+				break;
+			case 'Course':
+				$query .= "EXISTS (SELECT 1 FROM Section S WHERE
+					(EXISTS (SELECT 1  FROM Course C WHERE
+						(C.Name LIKE ?) 
+						AND (S.courseId = C.Id)
+					))
+					AND (L.sectionId = S.Id)
+				)";
+				$params = array("$searchTerm%");
+				break;
+			default:
+				break;
+		}
+
+		if (isset($query) && isset($params)) {
+			$result = execQuery($query, $params);
+		}
 		?>
 		
 		<table>
@@ -125,23 +175,22 @@
 				<th>Due Date:</th>
 				<th>Score:</th>
 				<th>Section ID:</th>
-				<th>Skills Checklist:</th>
 			</tr>
 			
 			<?php
-			//Check if the results returned 0 rows (needs to be tested!!!)
-			if (mysql_num_rows($result) == 0) {
+			//Check if the results returned 0 rows
+			if (count($result) == 0) {
 				echo ("<h3>NO RESULTS FOUND!</h3>");
 			} else {
-				while($row = mysql_fetch_array($result)) {
+				foreach ($result as $i => $row) {
 					// This will loop through each row
-					$id = $row["id"];
-					$name = $row["name"];
-					$description = $row["description"];
-					$dueDate = $row["dueDate"];
-					$score = $row["score"];
-					$sectionID = $row["sectionId"];
-					
+					$id = $row["Id"];
+					$name = $row["Name"];
+					$description = $row["Description"];
+					$dueDate = $row["DueDate"];
+					$score = $row["Score"];
+					$sectionID = $row["SectionId"];
+
 					echo "<tr>";
 					
 					echo "<td>$id</td>";
