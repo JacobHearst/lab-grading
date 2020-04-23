@@ -125,6 +125,7 @@
 				<th>Due Date:</th>
 				<th>Score:</th>
 				<th>Section ID:</th>
+				<th>Skills Checklist:</th>
 			</tr>
 			
 			<?php
@@ -149,6 +150,7 @@
 					echo "<td>$dueDate</td>";
 					echo "<td>$score</td>";
 					echo "<td>$sectionID</td>";
+					echo "<td><a href='../SkillsChecklist/skills.php?sectionId=$sectionID'></a></td>";
 					
 					echo "</tr>";
 				}
