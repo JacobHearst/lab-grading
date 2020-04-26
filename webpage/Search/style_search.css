@@ -1,5 +1,40 @@
+body {
+  background-color: #C1FFF6;
+}
+
 h1, h2, h4 {
 	text-align: center;
+}
+
+table {
+  margin-left: auto;
+  margin-right: auto;
+}
+
+table, th, td {
+  border-collapse: collapse;
+  padding: 4px;
+  border: 1px solid black;
+  text-align: center;
+}
+
+h3 {
+  text-align: center;
+  font-weight: bold;
+}
+
+#search-types-container {
+  float: left;
+  text-align: center;
+  position: relative;
+  bottom: 25;
+}
+
+ul#search-types {
+  text-align: left;
+  list-style-type: none;
+  padding-left: 0;
+  column-count: 2;
 }
 
 input[type=text] {
@@ -26,6 +61,3 @@ input[type=submit] {
   cursor: pointer;
 }
 
-body {
-	background-color: #C1FFF6;
-}

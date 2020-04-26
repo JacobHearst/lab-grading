@@ -14,7 +14,6 @@ function getConnection() {
     catch(PDOException $e) {
         $message = $e->getMessage();
         echo "{\"Error\": \"$message\"}";
-        http_response_code(500);
     }
 }
 
