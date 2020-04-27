@@ -41,7 +41,7 @@
         }
         ?>
         
-        <form action="Search" method="post">
+        <form action="" method="post">
             <div id="search-types-container">
                 <label for="search-types">Search by:</label>
                 <ul id="search-types">
@@ -136,6 +136,7 @@
                 <th>Due Date:</th>
                 <th>Score:</th>
                 <th>Section ID:</th>
+				<th>Skills Checklist:</th>
             </tr>";
 
             //Check if the results returned 0 rows
@@ -159,7 +160,7 @@
                     echo "<td>$dueDate</td>";
                     echo "<td>$score</td>";
                     echo "<td>$sectionID</td>";
-                    echo "<td><a href='../SkillsChecklist/skills.php?sectionId=$sectionID'></a></td>";
+                    echo "<td><a href='../SkillsChecklist/skills.php?sectionId=$sectionID'>View</a></td>";
                     
                     echo "</tr>";
                 }

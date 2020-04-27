@@ -1,15 +1,8 @@
 <html>
 	<head>
 		<title>Skills Checklist</title>
-		<style>
-			body {
-				background-color: #C1FFF6;
-			}
-			
-			h1, h2, h4 {
-				text-align: center;
-			}
-		</style>
+		<link rel="stylesheet" type="text/css" href="style_skills.css">
+		<script src="add_skill.js" type="text/javascript"></script>
 	</head>
 
 	<body>
@@ -21,18 +14,34 @@
 		<hr>
 		
 		<h2>Skills Checklist for Section: <?php echo($_GET["sectionId"]); ?></h2>
+		<p>View and Edit Skills:</p>
 		
-		<br>
-		
-		<form action="" method="post">
-			<?php
-			// Call to the database using the section ID in the skills checklist table and return the information there.  
-			// Then use it to build a form where you can add/update items on the skills checklist
-			?>
-			<p>Create a form here</p>
+		<table>
+			<tr>
+				<th>Topic:</th>
+				<th>Notes:</th>
+			</tr>
 			
-			<input type="submit" value="Submit">
-		</form>
+			<?php
+				// Call to the database using the section ID in the skills checklist table and return the information there.  
+				// Then use it to build a form where you can add/update items on the skills checklist
+
+
+			?>
+			
+			<tr>
+				<td colspan="2"><input type="button" value="Save Changes" onClick="updateSkills()"></td>
+			</tr>
+		</table>
+			
+		<br>
+			
+		<h4>Add New Skill:</h4>
 		
+		<form onSubmit="addSkill()">
+			<input type="text" name="topic" placeholder="Topic" required>
+			<input type="text" name="notes" placeholder="Notes" required>
+			<input type="button" value="Add Skill">
+		</form>
 	</body>
 </html>
