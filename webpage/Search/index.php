@@ -155,7 +155,8 @@
                     echo "<tr>";
                     
                     echo "<td>$id</td>";
-                    echo "<td>$name</td>";
+                    echo "<td><a href='../GradeLab/grade_single_value.php'>$name</a></td>";
+                    //echo "<td><a href='../GradeLab/grade_single_value.php?sectionId=$sectionID'>$name</a></td>";
                     echo "<td>$description</td>";
                     echo "<td>$dueDate</td>";
                     echo "<td>$score</td>";
