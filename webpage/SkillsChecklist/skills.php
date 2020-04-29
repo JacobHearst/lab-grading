@@ -7,6 +7,10 @@
 
 	<body>
 		<?php //Insert the skill into the database if the button was clicked and the post was set
+		ini_set('display_errors', 1);
+		ini_set('display_startup_errors', 1);
+		error_reporting(E_ALL);
+		
 		$sectID = $_GET["sectionId"];
 		$topic = $_POST["topic"];
 		$notes = $_POST["notes"];
@@ -19,21 +23,20 @@
 		if (isset($_POST["add"])) {
 			include "../database.php";
 			
-			$queryA = "INSERT INTO Skill (SectionId, Topic) VALUES ('?', '?')";
+			$queryA = "INSERT INTO Skill (SectionId, Topic) VALUES (?, ?);";
 			$paramsA = array();
 			array_push($paramsA, "$sectID%", "$topic%");
 			$resultA = execQuery($queryA, $paramsA);
 			
-			
-			$queryB = "SELECT * FROM Skill WHERE Topic='?' AND SectionId='?'";
+			$queryB = "SELECT * FROM Skill WHERE Topic=? AND SectionId=?;";
 			$paramsB = array();
 			array_push($paramsB, "$topic%", "$sectID%");
 			$resultB = execQuery($queryB);
-			$row = mysql_fetch_array($resultB);
-			$skillID = $row["Id"];
-			
-			
-			$queryC = "INERST INTO Notes (LabId, SkillId, CreatedBy, Note) VALUES ('?', '?', '?', '?')";
+
+			$skillID = $resultB[0];
+
+
+			$queryC = "INERST INTO Notes (LabId, SkillId, CreatedBy, Note) VALUES (?, ?, ?, ?);";
 			$paramsC = array();
 			array_push($paramsC, "$labID%", "$skillID%", "$createdBy%", "$notes%");
 			$resultC = execQuery($queryC);
