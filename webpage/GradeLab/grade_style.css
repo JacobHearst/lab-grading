@@ -7,3 +7,15 @@ body {
 h1, h2, h3, h4 {
 	text-align: center;
 }
+
+.infoTable {
+	border-collapse: collapse;
+	padding: 4px;
+	border: 1px solid black;
+	text-align: center;
+}
+
+#tableCenter {
+	margin-left: auto;
+	margin-right: auto;
+}
