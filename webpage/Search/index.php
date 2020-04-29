@@ -155,13 +155,12 @@
                     echo "<tr>";
                     
                     echo "<td>$id</td>";
-					echo "<td><a href='../GradeLab/grade_single_value.php'>$name</a></td>";
-                    //echo "<td><a href='../GradeLab/grade_single_value.php?sectionId=$sectionID'>$name</a></td>";
+                    echo "<td><a href='../GradeLab/grade_single_value.php?lab_id=$id&lab_name=$name&section_id=$sectionID'>$name</a></td>";
                     echo "<td>$description</td>";
                     echo "<td>$dueDate</td>";
                     echo "<td>$score</td>";
                     echo "<td>$sectionID</td>";
-                    echo "<td><a href='../SkillsChecklist/skills.php?sectionId=$sectionID&labId=$id&labName=$name'>View</a></td>";
+                    echo "<td><a href='../SkillsChecklist/skills.php?sectionId=$sectionID'>View</a></td>";
                     
                     echo "</tr>";
                 }

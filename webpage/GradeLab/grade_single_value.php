@@ -1,36 +1,29 @@
 <?php
+	include "../database.php";
 
-	$lab_id = $_REQUEST["labID"];
-	$student_id = $_REQUEST["studentID"];
-	$grade = $_REQUEST["grade"];
-	$servername = "144.13.22.59:3306";
-	$database = "G4AgileExperience";
-	$username = "g4AppUser";
-	$password = "aug4";
+	$lab_id = $_GET["lab_id"];
+	$lab_name = $_GET["lab_name"]
+//	$student_id = $_GET["studentID"];
+//	$grade = 100;
 
-	$conn = mysqli_connect($servername,$username,$password,$database);
-		if (!$conn) {
-			die ("Connection Failed: " . mysqli_connect_error());
-		}
+//	$sql = "UPDATE Grade SET Score = $grade WHERE LabId = $lab_id AND UserId = $student_id";
 
-	$sql = "UPDATE Grade SET Score = $grade WHERE LabId = $lab_id AND UserId = $student_id";
-
-	$results = mysqli_query($conn,$sql);
-	if(!$results) {
-		$error = mysqli_error();
-		echo $error;
-	}
-
-	mysqli_close();
+//	$results = mysqli_query($conn,$sql);
+//	if(!$results) {
+//		$error = mysqli_error();
+//		echo $error;
+//	}
+//
+//	mysqli_close();
 
 ?>
 
 <!doctype html>
 <html lang="en">
 	<head>
-		<title>Grade Lab (Single Value)</title>
-		<link rel="stylesheet" type="text/css" href="../www/GradeLab/grade_style.css">
-		<script src="../www/GradeLab/grade_single_value.js" type="text/javascript">
+		<title>Lab : <?=$lab_name?></title>
+		<link rel="stylesheet" type="text/css" href="./grade_style.css">
+		<script src="./grade_single_value.js" type="text/javascript">
 		</script>
 	</head>
 
@@ -42,16 +35,37 @@
         <br>
         <hr>
 		
-		<h2>Grade Lab (Single Value)</h2>
-		<h3>Current Grade: <?=$grade?></h3>
-		<form name="gradeForm" method="post">
+		<h2>Lab : <i><?=$lab_name?></i></h2>
+<!--		<h3>Current Grade: <?=$grade?></h3>-->
+		<form name="studentForm" method="post">
 			<fieldset>
-				
-				<label for="labID">Lab ID: </label>
-				<input type="text" id="labID" name="labID" value=<?=$lab_id?>><br>
-				
-				<label for="studentID">Student ID: </label>
-				<input type="text" id="studentID" name="studentID" value=<?=$student_id?>><br>
+				<?php
+		$query = "SELECT UserId FROM UserSection";
+		$params = array();
+		$result = execQuery($query, $params);
+		
+		
+		echo "<table>
+            <tr>
+                <th>ID: <?php $result ?></th>
+                <th>Name:</th>
+            </tr>";
+
+            //Check if the results returned 0 rows
+                foreach ($studentList as $i => $row) {
+                    // This will loop through each row
+                    $id = $row["Id"];
+                    $name = $row["Name"];
+
+                    echo "<tr>";
+                    
+                    echo "<td>$id</td>";
+                    echo "<td><a href='../GradeLab/grade_single_value.php?lab_id=$id&lab_name=$name&section_id=$sectionID'>$name</a></td>";
+                    
+                    echo "</tr>";
+                }
+            echo "</table>";
+		?>
 				
 				<label for="grade">Lab score: </label>
 				<input type="text" id="grade" name="grade"><br>
@@ -60,4 +74,5 @@
 			</fieldset>
 		</form>
 	</body>
+	
 </html>
