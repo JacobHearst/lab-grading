@@ -6,6 +6,39 @@
 	</head>
 
 	<body>
+		<?php //Insert the skill into the database if the button was clicked and the post was set
+		$sectID = $_GET["sectionId"];
+		$topic = $_POST["topic"];
+		$notes = $_POST["notes"];
+		
+		$labID = $_GET["labId"];
+		
+		// This could be changed based on the logged in user
+		$createdBy = "1";
+		
+		if (isset($_POST["add"])) {
+			include "../database.php";
+			
+			$queryA = "INSERT INTO Skill (SectionId, Topic) VALUES ('$sectID', '$topic')";
+			// execute query A
+			$resultA = execQuery($queryA);
+			
+			
+			$queryB = "SELECT * FROM Skill WHERE Topic='$topic' AND SectionId='$sectID'";
+			// execute query B
+			$resultB = execQuery($queryB);
+			$row = mysql_fetch_array($resultB);
+			$skillID = $row["Id"];
+			
+			echo ("<h1>$skillID</h1>");
+			
+			$queryC = "INERST INTO Notes (LabId, SkillId, CreatedBy, Note) VALUES ('$labID', '$skillID', '$createdBy', '$notes')";
+			// execute query C
+			$resultC = execQuery($queryC);
+			
+		}
+		?>
+		
 		<h1>Lab Grading Tool</h1>
 		<h2>Programmed by: Agile Experience Group 4</h2>
 		<h4><a href="../">Return to main page.</a></h4>
@@ -13,7 +46,7 @@
 		<br>
 		<hr>
 		
-		<h2>Skills Checklist for Section: <?php echo($_GET["sectionId"]); ?></h2>
+		<h2>Skills Checklist for Section: <?php echo($_GET["sectionId"]); ?> Lab: <?php echo($_GET["labName"]); ?></h2>
 		<p>View and Edit Skills:</p>
 		
 		<table>
@@ -38,10 +71,10 @@
 			
 		<h4>Add New Skill:</h4>
 		
-		<form onSubmit="addSkill()">
+		<form action="skills.php?sectionId=<?php echo($_GET["sectionId"]); ?>" method="post">
 			<input type="text" name="topic" placeholder="Topic" required>
 			<input type="text" name="notes" placeholder="Notes" required>
-			<input type="button" value="Add Skill">
+			<input type="submit" value="Add Skill" name="add">
 		</form>
 	</body>
 </html>

@@ -22,3 +22,7 @@ table, th, td {
 td {
 	width: 50%;
 }
+
+#success {
+	color: lawngreen;
+}
