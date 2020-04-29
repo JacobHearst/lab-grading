@@ -19,21 +19,23 @@
 		if (isset($_POST["add"])) {
 			include "../database.php";
 			
-			$queryA = "INSERT INTO Skill (SectionId, Topic) VALUES ('$sectID', '$topic')";
-			// execute query A
-			$resultA = execQuery($queryA);
+			$queryA = "INSERT INTO Skill (SectionId, Topic) VALUES ('?', '?')";
+			$paramsA = array();
+			array_push($paramsA, "$sectID%", "$topic%");
+			$resultA = execQuery($queryA, $paramsA);
 			
 			
-			$queryB = "SELECT * FROM Skill WHERE Topic='$topic' AND SectionId='$sectID'";
-			// execute query B
+			$queryB = "SELECT * FROM Skill WHERE Topic='?' AND SectionId='?'";
+			$paramsB = array();
+			array_push($paramsB, "$topic%", "$sectID%");
 			$resultB = execQuery($queryB);
 			$row = mysql_fetch_array($resultB);
 			$skillID = $row["Id"];
 			
-			echo ("<h1>$skillID</h1>");
 			
-			$queryC = "INERST INTO Notes (LabId, SkillId, CreatedBy, Note) VALUES ('$labID', '$skillID', '$createdBy', '$notes')";
-			// execute query C
+			$queryC = "INERST INTO Notes (LabId, SkillId, CreatedBy, Note) VALUES ('?', '?', '?', '?')";
+			$paramsC = array();
+			array_push($paramsC, "$labID%", "$skillID%", "$createdBy%", "$notes%");
 			$resultC = execQuery($queryC);
 			
 		}
