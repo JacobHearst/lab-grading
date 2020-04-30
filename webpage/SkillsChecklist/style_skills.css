@@ -23,6 +23,6 @@ td {
 	width: 50%;
 }
 
-#success {
-	color: lawngreen;
+h4.notice {
+	color: red;
 }

@@ -12,10 +12,10 @@
 		error_reporting(E_ALL);
 		
 		$sectID = $_GET["sectionId"];
-		$topic = $_POST["topic"];
-		$notes = $_POST["notes"];
 		
 		$labID = $_GET["labId"];
+		
+		$notice = "";
 		
 		// This could be changed based on the logged in user
 		$createdBy = "1";
@@ -23,24 +23,36 @@
 		if (isset($_POST["add"])) {
 			include "../database.php";
 			
-			$queryA = "INSERT INTO Skill (SectionId, Topic) VALUES (?, ?);";
-			$paramsA = array();
-			array_push($paramsA, "$sectID%", "$topic%");
-			$resultA = execQuery($queryA, $paramsA);
+			$topic = $_POST["topic"];
+			$notes = $_POST["notes"];
 			
-			$queryB = "SELECT * FROM Skill WHERE Topic=? AND SectionId=?;";
-			$paramsB = array();
-			array_push($paramsB, "$topic%", "$sectID%");
-			$resultB = execQuery($queryB);
-
-			$skillID = $resultB[0];
-
-
-			$queryC = "INERST INTO Notes (LabId, SkillId, CreatedBy, Note) VALUES (?, ?, ?, ?);";
-			$paramsC = array();
-			array_push($paramsC, "$labID%", "$skillID%", "$createdBy%", "$notes%");
-			$resultC = execQuery($queryC);
+			$conn = getConnection();
 			
+			// Query A
+			$queryA = "INSERT INTO Skill (SectionId, Topic) VALUES (?, ?)";
+			$stmt = $conn->prepare($queryA);
+			$stmt->bindParam(1, $sectID, PDO::PARAM_STR);
+			$stmt->bindParam(2, $topic, PDO::PARAM_STR);
+			$stmt->execute();
+			
+			// Query B
+			$stmt = $conn->prepare("SELECT * FROM Skill WHERE Topic=? AND SectionId=?");
+			$stmt->bindParam(1, $topic, PDO::PARAM_STR);
+			$stmt->bindParam(2, $sectID, PDO::PARAM_STR);
+			$stmt->execute();
+			$row = $stmt->fetch(PDO::FETCH_ASSOC);
+			$skillId = $row['Id'];
+			
+			// Query C
+			$queryC = "INSERT INTO Notes (LabId, SkillId, CreatedBy, Note) VALUES (?, ?, ?, ?)";
+			$stmt = $conn->prepare($queryC);
+			$stmt->bindParam(1, $labID, PDO::PARAM_STR);
+			$stmt->bindParam(2, $skillId, PDO::PARAM_STR);
+			$stmt->bindParam(3, $createdBy, PDO::PARAM_STR);
+			$stmt->bindParam(4, $notes, PDO::PARAM_STR);
+			$stmt->execute();
+			
+			$notice = "Skill: $topic added!";
 		}
 		?>
 		
@@ -48,6 +60,7 @@
 		<h2>Programmed by: Agile Experience Group 4</h2>
 		<h4><a href="../">Return to main page.</a></h4>
 		
+		<h4 class="notice"><?php echo($notice); ?></h4>
 		<br>
 		<hr>
 		
@@ -76,7 +89,7 @@
 			
 		<h4>Add New Skill:</h4>
 		
-		<form action="skills.php?sectionId=<?php echo($_GET["sectionId"]); ?>" method="post">
+		<form action="skills.php?sectionId=<?php echo($_GET["sectionId"]); ?>&labId=<?php echo($_GET["labId"]); ?>&labName=<?php echo($_GET["labName"]); ?>" method="post">
 			<input type="text" name="topic" placeholder="Topic" required>
 			<input type="text" name="notes" placeholder="Notes" required>
 			<input type="submit" value="Add Skill" name="add">
