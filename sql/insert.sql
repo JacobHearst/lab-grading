@@ -78,6 +78,21 @@ INSERT INTO Notes (Id, LabId, CreatedBy, Note) VALUES
     (7, 4, 4, "Even more lab notes."),
     (8, 5, 1, "\"Ah yes, another lab note.\""),
     (9, 5, 3, "This is the final lab note.");
+	
+-- Rubric test data
+INSERT INTO Rubric (Id, LabId, Note, PointValue) VALUES
+    (1, 1, "Code is completed and functioning", 90),
+    (2, 1, "Comments", 10),
+    (3, 2, "Database established and functioning", 50),
+    (4, 2, "Front-end user interface working properly", 50),
+    (5, 3, "Complete/Incomplete", 100),
+    (6, 4, "Commenting", 30),
+    (7, 4, "Linting/Style", 20),
+    (8, 4, "Program functionality", 50),
+    (9, 5, "Complete/Incomplete", 100),
+    (10, 6, "Complete/Incomplete", 100),
+    (11, 7, "Complete/Incomplete", 100),
+    (12, 8, "Complete/Incomplete", 100);
 
 -- Log test data
 INSERT INTO Log (UserID, LogDate, Description) VALUES
