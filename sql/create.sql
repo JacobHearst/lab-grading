@@ -65,6 +65,14 @@ CREATE TABLE Notes (
     FOREIGN KEY (SkillId) REFERENCES Skill(Id)
 );
 
+CREATE TABLE Rubric (
+    Id int NOT NULL AUTO_INCREMENT PRIMARY KEY,
+    LabId int,
+    Note nvarchar(100),
+    PointValue int,
+    FOREIGN KEY (LabId) REFERENCES Lab(Id)
+);
+
 CREATE TABLE Log (
     UserID int NOT NULL,
     LogDate DateTime DEFAULT CURRENT_TIMESTAMP,
