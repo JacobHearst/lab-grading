@@ -9,53 +9,36 @@
 	$username = "g4AppUser";
 	$password = "aug4";
 
-	$student_id = array();
-	$lab_name = array();
+	$params = array();
 
-	$conn = mysqli_connect($servername,$username,$password,$database);
-		if (!$conn) {
-			die ("Connection Failed: " . mysqli_connect_error());
-		}
+	include "../database.php";
+
+	$conn = getConnection();
 
 	//Query to select student ID
 
-	$sql = "SELECT Id FROM User WHERE FirstName=$student_first_name AND LastName=$student_last_name";
-
-	$results = mysqli_query($conn,$sql);
-	if(!$results) {
-		$error = mysqli_error();
-		echo $error;
-	}
-
-	while($row=mysqli_fetch_array($results)){
-		array_push($student_id, $row);
-	}
+	$statement = $conn -> prepare("SELECT Id FROM G4AgileExperience.User WHERE FirstName=? AND LastName=?");
+	$statement -> bindParam(1, $student_first_name, PDO::PARAM_STR);
+	$statement -> bindParam(2, $student_last_name, PDO::PARAM_STR);
+	$statement -> execute();
+	$row = $stmt->fetch(PDO::FETCH_ASSOC);
+	$student_id = $row['Id'];
 
 	//Query to select lab name
 
-	$sql = "SELECT Name FROM Lab WHERE Id=$lab_id";
-
-	$results = mysqli_query($conn,$sql);
-	if(!results) {
-		$error = mysqli_error();
-		echo $error;
-	}
-
-	while($row=mysqli_fetch_array()) {
-		array_push($lab_name, $row);
-	}
+	$statement = $conn -> prepare("SELECT Name FROM G4AgileExperience.Lab WHERE Id=?");
+	$statement -> bindParam(1, $lab_id, PDO::PARAM_STR);
+	$statement -> execute();
+	$row = $stmt->fetch(PDO::FETCH_ASSOC);
+	$lab_name = $row['Name'];
 
 	//Query to update lab score
 
-	$sql = "UPDATE Grade SET Score = $grade WHERE LabId = $lab_id AND UserId = $student_id[0]";
-
-	$results = mysqli_query($conn,$sql);
-	if(!$results) {
-		$error = mysqli_error();
-		echo $error;
-	}
-	
-	mysqli_close();
+	$statement = $conn -> prepare("UPDATE Grade SET Score = ? WHERE LabId = ? AND UserId = ?");
+	$statement -> bindParam(1, $grade, PDO::PARAM_STR);
+	$statement -> bindParam(2, $lab_id, PDO::PARAM_STR);
+	$statement -> bindParam(3, $student_id, PDO::PARAM_STR);
+	$statement -> execute();
 
 ?>
 
@@ -78,7 +61,7 @@
 		
 		<h2>Grade Lab</h2>
 		<h3>Student Name: <?=$student_last_name?>, <?=$student_first_name?> (ID: <?=$student_id?>)</h3>
-		<h3>Lab Name: <?=$lab_name[0]?> (ID: <?=$lab_id?>)</h3>
+		<h3>Lab Name: <?=$lab_name?> (ID: <?=$lab_id?>)</h3>
 		<h3>Current Grade: <?=$grade?></h3>	
 		
 		<form name="gradeForm" method="post" action="/grade_single_value.php?
