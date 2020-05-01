@@ -4,19 +4,6 @@
 	$section_id = $_GET["section_id"];
 	$lab_id = $_GET["lab_id"];
 	$lab_name = $_GET["lab_name"]
-//	$student_id = $_GET["studentID"];
-//	$grade = 100;
-
-//	$sql = "UPDATE Grade SET Score = $grade WHERE LabId = $lab_id AND UserId = $student_id";
-
-//	$results = mysqli_query($conn,$sql);
-//	if(!$results) {
-//		$error = mysqli_error();
-//		echo $error;
-//	}
-//
-//	mysqli_close();
-
 ?>
 
 <!doctype html>
@@ -83,7 +70,7 @@ WHERE LabId = 3;";
 					JOIN G4AgileExperience.User ON G4AgileExperience.UserSection.UserId = User.Id
 					WHERE SectionId = $section_id;";
 		$paramsB = array();
-		$resultB = execQuery($queryB, $params);
+		$resultB = execQuery($queryB, $paramsB);
 
 		echo "<table>";
 		echo "<tr>
@@ -97,6 +84,30 @@ WHERE LabId = 3;";
 			echo "<tr>
 					<td>$first $last</td>
 					<td><a href='../GradeLab/grade_single_value.php?labID=$lab_id&studentFirstName=$first&studentLastName=$last&grade=$score'>Modify</a></td>
+            	</tr>";
+		}
+            echo "</table>";
+
+
+
+		$queryR = "SELECT Note, PointValue
+					FROM G4AgileExperience.Rubric
+					WHERE LabId = $lab_id;";
+		$paramsR = array();
+		$resultR = execQuery($queryR, $paramsR);
+
+		echo "<table>";
+		echo "<tr>
+				<th>Note</th>
+				<th>Points</th>
+			  </tr>";
+		foreach ($resultR as $i => $row) {
+			$note = $row["Note"];
+			$pointValue = $row["PointValue"];
+			
+			echo "<tr>
+					<td>$note</td>
+					<td>$pointValue</td>
             	</tr>";
 		}
             echo "</table>";
