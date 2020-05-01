@@ -1,6 +1,7 @@
 <?php
 	include "../database.php";
 
+	$section_id = $_GET["section_id"];
 	$lab_id = $_GET["lab_id"];
 	$lab_name = $_GET["lab_name"]
 //	$student_id = $_GET["studentID"];
@@ -40,15 +41,22 @@
 		<form name="studentForm" method="post">
 			<fieldset>
 				<?php
-		$query = "SELECT UserId FROM UserSection";
+		$query = "SELECT FirstName, LastName
+					FROM UserSection 
+					JOIN User ON UserSection.UserId = User.Id WHERE SectionId = $section_id;";
 		$params = array();
 		$result = execQuery($query, $params);
 		
+
+                foreach ($result as $i => $row) {
+                    $first = $row["FirstName"];
+                    $last = $row["LastName"];
+				}
 		
 		echo "<table>
             <tr>
-                <th>ID: <?php $result ?></th>
-                <th>Name:</th>
+                <th>First Name: $first</th>
+                <th>Last Name: $last</th>
             </tr>";
 
             //Check if the results returned 0 rows

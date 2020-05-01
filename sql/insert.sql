@@ -50,12 +50,13 @@ INSERT INTO Lab (Id, Name, Description, DueDate, Score, SectionId) VALUES
 
 -- Grade test data
 INSERT INTO Grade (UserId, LabId, Score) VALUES
-    (1, 1, 10),
-    (2, 2, 8),
-    (3, 3, 3),
-    (4, 4, 20),
-    (5, 5, 19),
-    (8, 6, 5);
+	(1, 1, 10),
+	(2, 2, 8),
+	(3, 3, 3),
+	(5, 4, 19),
+	(8, 5, 5),
+	(9, 6, 19),
+	(10, 1, 15);
 
 -- Skill test data
 INSERT INTO Skill (Id, SectionId, Topic) VALUES
