@@ -1,30 +1,70 @@
 <?php
-	include "../database.php";
 
-	$section_id = $_GET["section_id"];
-	$lab_id = $_GET["lab_id"];
-	$lab_name = $_GET["lab_name"]
-//	$student_id = $_GET["studentID"];
-//	$grade = 100;
+	$lab_id = $_REQUEST["labID"];
+	$student_first_name = $_REQUEST["studentFirstName"];
+	$student_last_name = $_REQUEST["studentLastName"];
+	$grade = $_REQUEST["grade"];
+	$servername = "144.13.22.59:3306";
+	$database = "G4AgileExperience";
+	$username = "g4AppUser";
+	$password = "aug4";
 
-//	$sql = "UPDATE Grade SET Score = $grade WHERE LabId = $lab_id AND UserId = $student_id";
+	$student_id = array();
+	$lab_name = array();
 
-//	$results = mysqli_query($conn,$sql);
-//	if(!$results) {
-//		$error = mysqli_error();
-//		echo $error;
-//	}
-//
-//	mysqli_close();
+	$conn = mysqli_connect($servername,$username,$password,$database);
+		if (!$conn) {
+			die ("Connection Failed: " . mysqli_connect_error());
+		}
+
+	//Query to select student ID
+
+	$sql = "SELECT Id FROM User WHERE FirstName=$student_first_name AND LastName=$student_last_name";
+
+	$results = mysqli_query($conn,$sql);
+	if(!$results) {
+		$error = mysqli_error();
+		echo $error;
+	}
+
+	while($row=mysqli_fetch_array($results)){
+		array_push($student_id, $row);
+	}
+
+	//Query to select lab name
+
+	$sql = "SELECT Name FROM Lab WHERE Id=$lab_id";
+
+	$results = mysqli_query($conn,$sql);
+	if(!results) {
+		$error = mysqli_error();
+		echo $error;
+	}
+
+	while($row=mysqli_fetch_array()) {
+		array_push($lab_name, $row);
+	}
+
+	//Query to update lab score
+
+	$sql = "UPDATE Grade SET Score = $grade WHERE LabId = $lab_id AND UserId = $student_id[0]";
+
+	$results = mysqli_query($conn,$sql);
+	if(!$results) {
+		$error = mysqli_error();
+		echo $error;
+	}
+	
+	mysqli_close();
 
 ?>
 
 <!doctype html>
 <html lang="en">
 	<head>
-		<title>Lab : <?=$lab_name?></title>
-		<link rel="stylesheet" type="text/css" href="./grade_style.css">
-		<script src="./grade_single_value.js" type="text/javascript">
+		<title>Grade Lab</title>
+		<link rel="stylesheet" type="text/css" href="../www/GradeLab/grade_style.css">
+		<script src="../www/GradeLab/grade_single_value.js" type="text/javascript">
 		</script>
 	</head>
 
@@ -36,44 +76,14 @@
         <br>
         <hr>
 		
-		<h2>Lab : <i><?=$lab_name?></i></h2>
-<!--		<h3>Current Grade: <?=$grade?></h3>-->
-		<form name="studentForm" method="post">
+		<h2>Grade Lab</h2>
+		<h3>Student Name: <?=$student_last_name?>, <?=$student_first_name?> (ID: <?=$student_id?>)</h3>
+		<h3>Lab Name: <?=$lab_name[0]?> (ID: <?=$lab_id?>)</h3>
+		<h3>Current Grade: <?=$grade?></h3>	
+		
+		<form name="gradeForm" method="post" action="/grade_single_value.php?
+		labID=<?=$lab_id?>&studentFirstName=<?=$student_first_name?>&studentLastName=<?$student_last_name?>">
 			<fieldset>
-				<?php
-		$query = "SELECT FirstName, LastName
-					FROM UserSection 
-					JOIN User ON UserSection.UserId = User.Id WHERE SectionId = $section_id;";
-		$params = array();
-		$result = execQuery($query, $params);
-		
-
-                foreach ($result as $i => $row) {
-                    $first = $row["FirstName"];
-                    $last = $row["LastName"];
-				}
-		
-		echo "<table>
-            <tr>
-                <th>First Name: $first</th>
-                <th>Last Name: $last</th>
-            </tr>";
-
-            //Check if the results returned 0 rows
-                foreach ($studentList as $i => $row) {
-                    // This will loop through each row
-                    $id = $row["Id"];
-                    $name = $row["Name"];
-
-                    echo "<tr>";
-                    
-                    echo "<td>$id</td>";
-                    echo "<td><a href='../GradeLab/grade_single_value.php?lab_id=$id&lab_name=$name&section_id=$sectionID'>$name</a></td>";
-                    
-                    echo "</tr>";
-                }
-            echo "</table>";
-		?>
 				
 				<label for="grade">Lab score: </label>
 				<input type="text" id="grade" name="grade"><br>
@@ -82,5 +92,4 @@
 			</fieldset>
 		</form>
 	</body>
-	
 </html>

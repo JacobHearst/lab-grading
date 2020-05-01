@@ -96,7 +96,7 @@ WHERE LabId = 3;";
 			
 			echo "<tr>
 					<td>$first $last</td>
-					<td><a href='../GradeLab/grade_single_value.php?labID=$lab_id&studentFirstName=$first&studentLastName=$last'>Modify</a></td>
+					<td><a href='../GradeLab/grade_single_value.php?labID=$lab_id&studentFirstName=$first&studentLastName=$last&grade=$score'>Modify</a></td>
             	</tr>";
 		}
             echo "</table>";
