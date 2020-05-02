@@ -5,7 +5,7 @@
 	</head>
 
 	<body>
-		<?php //Insert the skill into the database if the button was clicked and the post was set
+		<?php
 		ini_set('display_errors', 1);
 		ini_set('display_startup_errors', 1);
 		error_reporting(E_ALL);
@@ -58,7 +58,37 @@
 		}
 		
 		if (isset($_POST["update"])) {
-			$notice = "NOT IMPLIMENTED YET!";
+			
+			$updateSkillID = $_POST["skillID"];
+			$updateSectionID = $_POST["sectionIDs"];
+			$updateTopic = $_POST["topics"];
+			$updateNote = $_POST["notes"];
+			
+			$conn = getConnection();
+			
+			foreach( $updateSkillID as $key => $value ) {
+				//Iterate through each row and update them
+				
+				//Update the Skill Table First
+				$updateSkillQuery = "UPDATE Skill SET Topic = ? WHERE Id = ? AND SectionId = ?";
+				$stmt = $conn->prepare($updateSkillQuery);
+				$stmt->bindParam(1, $updateTopic[$key], PDO::PARAM_STR);
+				$stmt->bindParam(2, $value, PDO::PARAM_STR);
+				$stmt->bindParam(3, $updateSectionID[$key], PDO::PARAM_STR);
+				$stmt->execute();
+				
+				
+				//Update the Notes Table Next
+				$updateNotesQuery = "UPDATE Notes SET Note = ? WHERE SkillId = ?";
+				$stmt = $conn->prepare($updateNotesQuery);
+				$stmt->bindParam(1, $updateNote[$key], PDO::PARAM_STR);
+				$stmt->bindParam(2, $value, PDO::PARAM_STR);
+				$stmt->execute();
+			}
+			
+			$notice = "Skills updated successfully!";
+			
+			$conn = null;
 		}
 		?>
 		
