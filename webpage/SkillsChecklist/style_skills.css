@@ -26,3 +26,8 @@ td {
 h4.notice {
 	color: red;
 }
+
+h3.error {
+	text-align: center;
+	color: red;
+}

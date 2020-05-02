@@ -2,7 +2,6 @@
 	<head>
 		<title>Skills Checklist</title>
 		<link rel="stylesheet" type="text/css" href="style_skills.css">
-		<script src="add_skill.js" type="text/javascript"></script>
 	</head>
 
 	<body>
@@ -10,6 +9,8 @@
 		ini_set('display_errors', 1);
 		ini_set('display_startup_errors', 1);
 		error_reporting(E_ALL);
+		
+		include "../database.php";
 		
 		$sectID = $_GET["sectionId"];
 		
@@ -21,7 +22,6 @@
 		$createdBy = "1";
 		
 		if (isset($_POST["add"])) {
-			include "../database.php";
 			
 			$topic = $_POST["topic"];
 			$notes = $_POST["notes"];
@@ -53,6 +53,12 @@
 			$stmt->execute();
 			
 			$notice = "Skill: $topic added!";
+			
+			$conn = null;
+		}
+		
+		if (isset($_POST["update"])) {
+			$notice = "NOT IMPLIMENTED YET!";
 		}
 		?>
 		
@@ -65,25 +71,57 @@
 		<hr>
 		
 		<h2>Skills Checklist for Section: <?php echo($_GET["sectionId"]); ?> Lab: <?php echo($_GET["labName"]); ?></h2>
-		<p>View and Edit Skills:</p>
+		<h4>View and Edit Skills:</h4>
 		
-		<table>
-			<tr>
-				<th>Topic:</th>
-				<th>Notes:</th>
-			</tr>
-			
-			<?php
+		<form action="skills.php?sectionId=<?php echo($_GET["sectionId"]); ?>&labId=<?php echo($_GET["labId"]); ?>&labName=<?php echo($_GET["labName"]); ?>" method="post">
+			<table>
+				<tr>
+					<th>ID:</th>
+					<th>Section ID:</th>
+					<th>Topic:</th>
+					<th>Notes:</th>
+				</tr>
+
+				<?php
 				// Call to the database using the section ID in the skills checklist table and return the information there.  
 				// Then use it to build a form where you can add/update items on the skills checklist
+				$conn = getConnection();
 
+				$query = "SELECT Skill.Id, Skill.SectionId, Skill.Topic, Notes.Note FROM Skill INNER JOIN Notes ON Skill.Id = Notes.SkillId WHERE Skill.SectionId = ? ORDER BY Skill.Topic";
+				$stmt = $conn->prepare($query);
+				$stmt->bindParam(1, $_GET["sectionId"], PDO::PARAM_STR);
+				$stmt->execute();
+				
+				$result = $stmt->fetchAll();
+				
+				if (count($result) == 0) {
+                	echo ("<h3 class='error'>NO RESULTS FOUND!</h3>");
+				} else {
+					foreach($result as $row) {
+						$id = $row["Id"];
+						$sectionid = $row["SectionId"];
+						$topic = $row["Topic"];
+						$note = $row["Note"];
+						
+						echo "<tr>";
+						
+						echo "<td><input type='text' name='skillID[]' value='$id' readonly /></td>";
+						echo "<td><input type='text' name='sectionIDs[]' value='$sectionid' readonly /></td>";
+						echo "<td><input type='text' name='topics[]' value='$topic' /></td>";
+						echo "<td><input type='text' name='notes[]' value='$note' /></td>";
+						
+						echo "</tr>";
+					}
+				}
 
-			?>
-			
-			<tr>
-				<td colspan="2"><input type="button" value="Save Changes" onClick="updateSkills()"></td>
-			</tr>
-		</table>
+				$conn = null;
+				?>
+
+				<tr>
+					<td colspan="4"><input type="submit" value="Save Changes" name ="update"></td>
+				</tr>
+			</table>
+		</form>
 			
 		<br>
 			
