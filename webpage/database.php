@@ -27,6 +27,6 @@ function execQuery($query, $params) {
         $stmt->execute();
     }
 
-    return $stmt->fetchAll(PDO::FETCH_ASSOC);
+    return $stmt;
 }
 ?>

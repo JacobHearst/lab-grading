@@ -124,19 +124,20 @@
         }
 
         if (isset($query) && isset($params)) {
-            $result = execQuery($query, $params);
+            $result = execQuery($query, $params)->fetchAll(PDO::FETCH_ASSOC);
         }
 
         if (isset($result)) {
             echo "<table>
             <tr>
-                <th>ID:</th>
                 <th>Name:</th>
+                <th>Grading Link:</th>
                 <th>Description:</th>
                 <th>Due Date:</th>
                 <th>Score:</th>
                 <th>Section ID:</th>
-				<th>Skills Checklist:</th>
+                <th>Skills Checklist:</th>
+                <th>Notes:</th>
             </tr>";
 
             //Check if the results returned 0 rows
@@ -153,14 +154,15 @@
                     $sectionID = $row["SectionId"];
 
                     echo "<tr>";
-                    
-                    echo "<td>$id</td>";
+
                     echo "<td><a href='../Lab/lab.php?lab_id=$id&lab_name=$name&section_id=$sectionID'>$name</a></td>";
+                    echo "<td><a href='../GradeLab/grade_single_value.php?lab_id=$id&lab_name=$name&section_id=$sectionID'>$name</a></td>";
                     echo "<td>$description</td>";
                     echo "<td>$dueDate</td>";
                     echo "<td>$score</td>";
                     echo "<td>$sectionID</td>";
                     echo "<td><a href='../SkillsChecklist/skills.php?sectionId=$sectionID'>View</a></td>";
+                    echo "<td><a href='../LabNotes?labId=$id'>View</a></td>";
                     
                     echo "</tr>";
                 }

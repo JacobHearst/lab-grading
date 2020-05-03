@@ -30,7 +30,7 @@ FROM G4AgileExperience.Lab
 JOIN G4AgileExperience.Notes ON G4AgileExperience.Lab.Id = Notes.LabId
 WHERE LabId = 3;";
 		$paramsQ = array();
-		$resultQ = execQuery($queryNotes, $paramsQ);
+		$resultQ = execQuery($queryNotes, $paramsQ)->fetchAll(PDO::FETCH_ASSOC);
 		
 		echo "<h3>Notes</h3>";
 		foreach ($resultQ as $i => $row) {
@@ -44,7 +44,7 @@ WHERE LabId = 3;";
 		JOIN G4AgileExperience.User ON G4AgileExperience.UserSection.UserId = User.Id
 		JOIN G4AgileExperience.Grade ON G4AgileExperience.UserSection.UserId = Grade.UserId WHERE LabId = $lab_id and SectionId = $section_id;";
 		$params = array();
-		$result = execQuery($query, $params);
+		$result = execQuery($query, $params)->fetchAll(PDO::FETCH_ASSOC);
 
 		echo "<table>";
 		echo "<tr>
@@ -70,7 +70,7 @@ WHERE LabId = 3;";
 					JOIN G4AgileExperience.User ON G4AgileExperience.UserSection.UserId = User.Id
 					WHERE SectionId = $section_id;";
 		$paramsB = array();
-		$resultB = execQuery($queryB, $paramsB);
+		$resultB = execQuery($queryB, $paramsB)->fetchAll(PDO::FETCH_ASSOC);
 
 		echo "<table>";
 		echo "<tr>
@@ -94,7 +94,7 @@ WHERE LabId = 3;";
 					FROM G4AgileExperience.Rubric
 					WHERE LabId = $lab_id;";
 		$paramsR = array();
-		$resultR = execQuery($queryR, $paramsR);
+		$resultR = execQuery($queryR, $paramsR)->fetchAll(PDO::FETCH_ASSOC);
 
 		echo "<table>";
 		echo "<tr>

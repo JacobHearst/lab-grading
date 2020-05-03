@@ -1,0 +1,28 @@
+body {
+	background-color: #C1FFF6;
+}
+
+h1, h2, h4 {
+	text-align: center;
+}
+
+#add-note-form {
+    float:left;
+}
+
+#note-id {
+    width: 75px;
+}
+
+.block {
+    display: block;
+}
+
+.inline-block {
+    display: inline-block;
+}
+
+#current-notes {
+    list-style-type: none;
+    float: right;
+}
