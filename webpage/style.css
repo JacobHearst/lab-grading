@@ -1,23 +1,23 @@
 body {
-	background-color: #C1FFF6;
+  background-color: #C1FFF6;
 }
 
 h1, h2, h3 {
-	text-align: center;
+  text-align: center;
 }
 
 .infoTable {
-	border-collapse: collapse;
-	padding: 4px;
-	border: 1px solid black;
-	text-align: center;
+  border-collapse: collapse;
+  padding: 4px;
+  border: 1px solid black;
+  text-align: center;
 }
 
 #tableCenter {
-	margin-left: auto;
-	margin-right: auto;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 li {
-	text-align: left;
+  text-align: left;
 }
