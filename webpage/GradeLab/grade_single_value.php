@@ -29,11 +29,12 @@
 
   //Query to select lab name
 
-  $statement = $conn -> prepare("SELECT Name FROM G4AgileExperience.Lab WHERE Id=?");
+  $statement = $conn -> prepare("SELECT Name, SectionId FROM G4AgileExperience.Lab WHERE Id=?");
   $statement -> bindParam(1, $lab_id, PDO::PARAM_STR);
   $statement -> execute();
   $row = $statement->fetch(PDO::FETCH_ASSOC);
   $lab_name = $row['Name'];
+  $section_id = $row['SectionId'];
 
   //Query to update lab score
 
@@ -64,7 +65,7 @@
     
     <h2>Grade Lab</h2>
     <h3>Student Name: <?=$student_last_name?>, <?=$student_first_name?> (ID: <?=$student_id?>)</h3>
-    <h3>Lab Name: <?=$lab_name?> (ID: <?=$lab_id?>)</h3>
+    <h3>Lab Name: <a href='../Lab/lab.php?lab_id=<?=$lab_id?>&lab_name=<?=$lab_name?>&section_id=<?=$section_id?>'><?=$lab_name?></a> (ID: <?=$lab_id?>)</h3>
     <h3>Current Grade: <?=$grade?></h3>
     
     <form name="gradeForm" method="post" onSubmit="return validateForm()" action="/GradeLab/grade_single_value.php?
