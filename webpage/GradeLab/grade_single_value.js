@@ -8,5 +8,6 @@ function validateForm() {
 	if (confirm("Are you sure you want to submit this grade?")){
   	  return true;
 	}
+	return false;
   }
 }

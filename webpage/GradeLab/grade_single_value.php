@@ -65,16 +65,16 @@
     <h2>Grade Lab</h2>
     <h3>Student Name: <?=$student_last_name?>, <?=$student_first_name?> (ID: <?=$student_id?>)</h3>
     <h3>Lab Name: <?=$lab_name?> (ID: <?=$lab_id?>)</h3>
-    <h3>Current Grade: <?=$grade?></h3>	
+    <h3>Current Grade: <?=$grade?></h3>
     
-    <form name="gradeForm" method="post" onSubmit="return validateForm()" action="/grade_single_value.php?
-    labID=<?=$lab_id?>&studentFirstName=<?=$student_first_name?>&studentLastName=<?$student_last_name?>">
+    <form name="gradeForm" method="post" onSubmit="return validateForm()" action="/GradeLab/grade_single_value.php?
+    labID=<?=$lab_id?>&studentFirstName=<?=$student_first_name?>&studentLastName=<?=$student_last_name?>">
       <fieldset>
         
         <label for="grade">Lab score: </label>
         <input type="text" id="grade" name="grade"><br>
         
-        <button type="submit" value="Submit">Save and Update</button>
+        <input type="submit" value="Save and Update">
       </fieldset>
     </form>
   </body>
