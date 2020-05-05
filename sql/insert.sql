@@ -56,7 +56,9 @@ INSERT INTO Grade (UserId, LabId, Score) VALUES
 	(5, 4, 19),
 	(8, 5, 5),
 	(9, 6, 19),
-	(10, 1, 15);
+	(10, 1, 15),
+	(8, 7, 100),
+	(5, 8, 90);
 
 -- Skill test data
 INSERT INTO Skill (Id, SectionId, Topic) VALUES
