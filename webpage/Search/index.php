@@ -154,6 +154,10 @@
           <td>
             <a href='../Lab/lab.php?lab_id=$id&lab_name=$name&section_id=$sectionID'>$name</a>
           </td>";
+          echo "
+          <td>
+            <a href='../GradeLab/grade_single_value.php?lab_id=$id&lab_name=$name&section_id=$sectionID'>$name</a>
+          </td>";
           echo "<td>$description</td>";
           echo "<td>$dueDate</td>";
           echo "<td>$score</td>";
