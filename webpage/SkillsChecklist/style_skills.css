@@ -1,33 +1,228 @@
+html,
 body {
-  background-color: #C1FFF6;
+    height: 100%;
 }
 
-h1, h2, h4 {
-  text-align: center;
+body {
+    margin: 0px;
+    padding: 0px;
+    background: #2056ac;
+    font-family: 'Questrial', sans-serif;
+    font-size: 12pt;
+    color: rgba(0, 0, 0, .6);
+    text-align: center;
+}
+
+h1,
+h2,
+h3 {
+    margin: 0;
+    padding: 0;
+    color: #404040;
+}
+
+.container {
+    margin: 0px auto;
+    width: 1200px;
+}
+
+
+/*********************************************************************************/
+
+
+/* Heading Titles                                                                */
+
+
+/*********************************************************************************/
+
+.title {
+    margin-bottom: 3em;
+}
+
+.title h2 {
+    font-size: 2.8em;
+}
+
+
+/*********************************************************************************/
+
+
+/* Header                                                                        */
+
+
+/*********************************************************************************/
+
+#header-wrapper {
+    overflow: hidden;
+    background: #2056ac;
+}
+
+#header {
+    text-align: center;
+}
+
+
+/*********************************************************************************/
+
+
+/* Logo                                                                          */
+
+
+/*********************************************************************************/
+
+#logo {
+    padding: 8em 0em 4em 0em;
+}
+
+#logo h1 {
+    display: block;
+    margin-bottom: 0.20em;
+    padding: 0.20em 0.9em;
+    font-size: 3.5em;
+}
+
+#logo a {
+    text-decoration: none;
+    color: #FFF;
+}
+
+#logo span {
+    text-transform: uppercase;
+    font-size: 2.90em;
+    color: rgba(255, 255, 255, 1);
+}
+
+#logo span a {
+    color: rgba(255, 255, 255, 0.8);
+}
+
+
+/*********************************************************************************/
+
+
+/* Menu                                                                          */
+
+
+/*********************************************************************************/
+
+#menu {
+    height: 60px;
+}
+
+#menu ul {
+    display: inline-block;
+    padding: 0em 2em;
+    text-align: center;
+}
+
+#menu li {
+    display: inline-block;
+}
+
+#menu li a,
+#menu li span {
+    display: inline-block;
+    padding: 0em 1.5em;
+    text-decoration: none;
+    font-size: 0.90em;
+    font-weight: 600;
+    text-transform: uppercase;
+    line-height: 60px;
+    outline: 0;
+    color: #FFF;
+}
+
+#menu li:hover a,
+#menu li.active a,
+#menu li.active span {
+    background: #FFF;
+    border-radius: 7px 7px 0px 0px;
+    color: #2056ac;
+}
+
+
+/*********************************************************************************/
+
+
+/* Wrapper                                                                       */
+
+
+/*********************************************************************************/
+
+.wrapper {
+    overflow: hidden;
+    padding: 0em 0em 5em 0em;
+    background: #FFF;
+}
+
+h1,
+h2,
+h4 {
+    text-align: center;
 }
 
 table {
-  width:80%; 
-    margin-left:10%; 
-    margin-right:10%;
+    width: 80%;
+    margin-left: 10%;
+    margin-right: 10%;
 }
 
-table, th, td {
-  border-collapse: collapse;
-  padding: 4px;
-  border: 1px solid black;
-  text-align: center;
+table,
+th,
+td {
+    border-collapse: collapse;
+    padding: 4px;
+    border: 1px solid black;
+    text-align: center;
 }
 
 td {
-  width: 50%;
+    width: 50%;
 }
 
 h4.notice {
-  color: red;
+    color: red;
 }
 
 h3.error {
-  text-align: center;
-  color: red;
+    text-align: center;
+    color: red;
+}
+
+
+/*********************************************************************************/
+
+
+/* Footer                                                                        */
+
+
+/*********************************************************************************/
+
+#footer {
+    overflow: hidden;
+    padding: 5em 0em;
+    background: #E3F0F7;
+    text-align: center;
+}
+
+#footer .fbox1,
+#footer .fbox2,
+#footer .fbox3 {
+    float: left;
+    width: 320px;
+    padding: 0px 40px 0px 40px;
+}
+
+#footer .icon {
+    display: block;
+    margin-bottom: 1em;
+    font-size: 3em;
+}
+
+#footer .title span {
+    color: rgba(255, 255, 255, 0.4);
+}
+
+#addSkill {
+    display: inline-block;
 }

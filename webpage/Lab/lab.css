@@ -1,63 +1,201 @@
-body {
-  background-color: #C1FFF6;
+/*********************************************************************************/
+
+
+/* Header                                                                        */
+
+
+/*********************************************************************************/
+
+#header-wrapper {
+    overflow: hidden;
+    background: #2056ac;
 }
 
-h1, h2, h4, p {
-  text-align: center;
+#header {
+    text-align: center;
+}
+
+
+/*********************************************************************************/
+
+
+/* Logo                                                                          */
+
+
+/*********************************************************************************/
+
+#logo {
+    padding: 8em 0em 4em 0em;
+}
+
+#logo h1 {
+    display: block;
+    margin-bottom: 0.20em;
+    padding: 0.20em 0.9em;
+    font-size: 3.5em;
+}
+
+#logo a {
+    text-decoration: none;
+    color: #FFF;
+}
+
+#logo span {
+    text-transform: uppercase;
+    font-size: 2.90em;
+    color: rgba(255, 255, 255, 1);
+}
+
+#logo span a {
+    color: rgba(255, 255, 255, 0.8);
+}
+
+
+/*********************************************************************************/
+
+
+/* Menu                                                                          */
+
+
+/*********************************************************************************/
+
+#menu {
+    height: 60px;
+}
+
+#menu ul {
+    display: inline-block;
+    padding: 0em 2em;
+    text-align: center;
+}
+
+#menu li {
+    display: inline-block;
+}
+
+#menu li a,
+#menu li span {
+    display: inline-block;
+    padding: 0em 1.5em;
+    text-decoration: none;
+    font-size: 0.90em;
+    font-weight: 600;
+    text-transform: uppercase;
+    line-height: 60px;
+    outline: 0;
+    color: #FFF;
+}
+
+#menu li:hover a,
+#menu li.active a,
+#menu li.active span {
+    background: #FFF;
+    border-radius: 7px 7px 0px 0px;
+    color: #2056ac;
+}
+
+
+/*********************************************************************************/
+
+
+/* Wrapper                                                                       */
+
+
+/*********************************************************************************/
+
+.wrapper {
+    overflow: hidden;
+    padding: 0em 0em 5em 0em;
+    background: #FFF;
+}
+
+h1,
+h2,
+h4,
+p {
+    text-align: center;
 }
 
 table {
-  margin-left: auto;
-  margin-right: auto;
+    margin-left: auto;
+    margin-right: auto;
 }
 
-table, th, td {
-  border-collapse: collapse;
-  padding: 4px;
-  border: 1px solid black;
-  text-align: center;
+table,
+th,
+td {
+    border-collapse: collapse;
+    padding: 4px;
+    border: 1px solid black;
+    text-align: center;
 }
 
 h3 {
-  text-align: center;
-  font-weight: bold;
+    text-align: center;
+    font-weight: bold;
 }
 
 #search-types-container {
-  float: left;
-  text-align: center;
-  position: relative;
-  bottom: 25;
+    float: left;
+    text-align: center;
+    position: relative;
+    bottom: 25;
 }
 
 ul#search-types {
-  text-align: left;
-  list-style-type: none;
-  padding-left: 0;
-  column-count: 2;
+    text-align: left;
+    list-style-type: none;
+    padding-left: 0;
+    column-count: 2;
 }
 
 input[type=text] {
-  width: 80%;
-  padding: 12px 20px;
-  margin: 8px 0;
-  box-sizing: border-box;
+    width: 80%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    box-sizing: border-box;
 }
 
 select {
-  padding: 12px 20px;
-  border: none;
-  border-radius: 4px;
-  background-color: #f1f1f1;
+    padding: 12px 20px;
+    border: none;
+    border-radius: 4px;
+    background-color: #f1f1f1;
 }
 
 input[type=submit] {
-  background-color: #f1f1f1;
-  border: none;
-  color: black;
-  padding: 12px 32px;
-  text-decoration: none;
-  margin: 8px 2px;
-  cursor: pointer;
+    background-color: #f1f1f1;
+    border: none;
+    color: black;
+    padding: 12px 32px;
+    text-decoration: none;
+    margin: 8px 2px;
+    cursor: pointer;
 }
 
+html,
+body {
+    height: 100%;
+}
+
+body {
+    margin: 0px;
+    padding: 0px;
+    background: #2056ac;
+    font-family: 'Questrial', sans-serif;
+    font-size: 12pt;
+    color: rgba(0, 0, 0, .6);
+}
+
+h1,
+h2,
+h3 {
+    margin: 0;
+    padding: 0;
+    color: #404040;
+}
+
+.container {
+    margin: 0px auto;
+    width: 1200px;
+}

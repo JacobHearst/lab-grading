@@ -1,10 +1,10 @@
 <?php
 if (!isset($_GET['labId'])) {
-    echo 'No LabId provided';
-    // If the labId isn't set, we can't do anything
-    die();
+  echo 'No LabId provided';
+  // If the labId isn't set, we can't do anything
+  die();
 } else {
-    $labId = (int)$_GET['labId'];
+  $labId = (int) $_GET['labId'];
 }
 
 include '../database.php';
@@ -25,6 +25,7 @@ if (isset($_POST['note'])) {
     $params = array($labId, 1, $_POST['note']);
   }
 
+  include '../database.php';
   execQuery($query, $params);
 }
 
@@ -35,43 +36,61 @@ $notes = execQuery($selectQuery, array($labId))->fetchAll(PDO::FETCH_ASSOC);
 
 <!DOCTYPE html>
 <html>
-  <head>
-    <meta charset="utf-8">
-    <title>Lab Notes</title>
-      <link rel="stylesheet" type="text/css" href="LabNotes/style_labNotes.css">
-  </head>
 
-  <body>
-    <h1>Lab Grading Tool</h1>
-    <h2>Programmed by: Agile Experience Group 4</h2>
-    <h4><a href="../">Return to main page.</a></h4>
-    
-    <br>
-    <hr>
-      <h2>Add/Edit Lab Notes:</h2>
-      <div id="notes-wrapper">
-        <form method="POST" id="add-note-form">
-            <label class="inline-block">Editing note:</label>
-            <!-- TODO: Update this field when a user clicks a button to edit a note -->
-            <input id="note-id" class="inline-block" name="noteId" type="text" readonly/>
-            <textarea id="note-textarea" class="block" name="note" maxlength=100 rows=4 cols=25 required></textarea>
-            <button type=button onclick="resetNoteId()">Clear note ID</button>
-            <input type="submit" value="Submit"/>
-        </form>
-        <div id="notes-list-wrapper">
-            <h3>Current notes</h3>
-            <ul id="current-notes">
-                <?php 
-                    foreach($notes as $note) { ?>
-                        <li>
-                            <p class="note-list-item"><?=$note['Note']?></p>
-                            <button onclick="editNote(<?=$note['Id']?>, '<?=$note['Note']?>')">Edit</button>
-                        </li>
-                    <?php } ?>
-            </ul>
-        </div>
+<head>
+  <meta charset="utf-8">
+  <title>Lab Notes</title>
+  <link rel="stylesheet" type="text/css" href="LabNotes/style_labNotes.css">
+</head>
+
+<body>
+
+  <div id="header-wrapper">
+    <div id="header" class="container">
+      <div id="logo">
+        <h1><a>Lab Grading Tool</a></h1>
+      </div>
+      <div id="menu">
+        <ul>
+          <li><a href="../index.html" title="">Homepage</a></li>
+          <li><a href="./Search/" title="">Lab Search</a></li>
+        </ul>
+      </div>
     </div>
+  </div>
+
+  <div class="wrapper">
+    <br>
+    <div id="LabNotes" class="container">
+      <h2>Add/Edit Lab Notes:</h2>
+      <form method="POST" id="add-note-form">
+        <label>Editing note:</label>
+        <!-- TODO: Update this field when a user clicks a button to edit a note -->
+        <input id="note-id" class="inline-block" name="noteId" type="text" disabled />
+        <textarea class="block" name="note" rows=16 cols=64></textarea>
+        <button type=button onclick="resetNoteId()">Clear note ID</button>
+        <input type="submit" value="Submit" />
+      </form>
+      <div id="notes-list-wrapper">
+        <h3>Current notes</h3>
+        <ul id="current-notes">
+          <?php
+          foreach ($notes as $note) { ?>
+            <li>
+              <p class="note-list-item"><?= $note['Note'] ?></p>
+              <button onclick="editNote(<?= $note['Id'] ?>, '<?= $note['Note'] ?>')">Edit</button>
+            </li>
+          <?php } ?>
+        </ul>
+      </div>
 
       <script src="LabNotes/main.js"></script>
-  </body>
+    </div>
+  </div>
+  <div id="footer">
+    <div class="container">
+    </div>
+  </div>
+</body>
+
 </html>

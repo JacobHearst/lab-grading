@@ -1,63 +1,312 @@
+html,
 body {
-  background-color: #C1FFF6;
+    height: 100%;
 }
 
-h1, h2, h4 {
-  text-align: center;
+body {
+    margin: 0px;
+    padding: 0px;
+    background: #2056ac;
+    font-family: 'Questrial', sans-serif;
+    font-size: 12pt;
+    color: rgba(0, 0, 0, .6);
 }
 
-table {
-  margin-left: auto;
-  margin-right: auto;
-}
-
-table, th, td {
-  border-collapse: collapse;
-  padding: 4px;
-  border: 1px solid black;
-  text-align: center;
-}
-
+h1,
+h2,
 h3 {
-  text-align: center;
-  font-weight: bold;
+    margin: 0;
+    padding: 0;
+    color: #404040;
 }
 
-#search-types-container {
-  float: left;
-  text-align: center;
-  position: relative;
-  bottom: 25;
+.container {
+    margin: 0px auto;
+    width: 1200px;
 }
 
-ul#search-types {
-  text-align: left;
-  list-style-type: none;
-  padding-left: 0;
-  column-count: 2;
+
+/*********************************************************************************/
+
+
+/* Heading Titles                                                                */
+
+
+/*********************************************************************************/
+
+.title {
+    margin-bottom: 3em;
 }
 
-input[type=text] {
-  width: 80%;
-  padding: 12px 20px;
-  margin: 8px 0;
-  box-sizing: border-box;
+.title h2 {
+    font-size: 2.8em;
 }
 
-select {
-  padding: 12px 20px;
-  border: none;
-  border-radius: 4px;
-  background-color: #f1f1f1;
+
+/*********************************************************************************/
+
+
+/* Header                                                                        */
+
+
+/*********************************************************************************/
+
+#header-wrapper {
+    overflow: hidden;
+    background: #2056ac;
 }
 
-input[type=submit] {
-  background-color: #f1f1f1;
-  border: none;
-  color: black;
-  padding: 12px 32px;
-  text-decoration: none;
-  margin: 8px 2px;
-  cursor: pointer;
+#header {
+    text-align: center;
 }
 
+
+/*********************************************************************************/
+
+
+/* Logo                                                                          */
+
+
+/*********************************************************************************/
+
+#logo {
+    padding: 8em 0em 4em 0em;
+}
+
+#logo h1 {
+    display: block;
+    margin-bottom: 0.20em;
+    padding: 0.20em 0.9em;
+    font-size: 3.5em;
+}
+
+#logo a {
+    text-decoration: none;
+    color: #FFF;
+}
+
+#logo span {
+    text-transform: uppercase;
+    font-size: 2.90em;
+    color: rgba(255, 255, 255, 1);
+}
+
+#logo span a {
+    color: rgba(255, 255, 255, 0.8);
+}
+
+
+/*********************************************************************************/
+
+
+/* Menu                                                                          */
+
+
+/*********************************************************************************/
+
+#menu {
+    height: 60px;
+}
+
+#menu ul {
+    display: inline-block;
+    padding: 0em 2em;
+    text-align: center;
+}
+
+#menu li {
+    display: inline-block;
+}
+
+#menu li a,
+#menu li span {
+    display: inline-block;
+    padding: 0em 1.5em;
+    text-decoration: none;
+    font-size: 0.90em;
+    font-weight: 600;
+    text-transform: uppercase;
+    line-height: 60px;
+    outline: 0;
+    color: #FFF;
+}
+
+#menu li:hover a,
+#menu li.active a,
+#menu li.active span {
+    background: #FFF;
+    border-radius: 7px 7px 0px 0px;
+    color: #2056ac;
+}
+
+
+/*********************************************************************************/
+
+
+/* Wrapper                                                                       */
+
+
+/*********************************************************************************/
+
+.wrapper {
+    overflow: hidden;
+    padding: 0em 0em 5em 0em;
+    background: #FFF;
+}
+
+
+/*********************************************************************************/
+
+
+/* Welcome                                                                       */
+
+
+/*********************************************************************************/
+
+#welcome {
+    overflow: hidden;
+    width: 1000px;
+    padding: 6em 100px 0em 100px;
+    text-align: center;
+}
+
+#welcome .content {
+    padding: 0em 8em;
+}
+
+
+/*********************************************************************************/
+
+
+/* Page                                                                          */
+
+
+/*********************************************************************************/
+
+#page-wrapper {
+    overflow: hidden;
+    background: #2F1E28;
+    padding: 3em 0em 6em 0em;
+    text-align: center;
+}
+
+
+/*********************************************************************************/
+
+
+/* Footer                                                                        */
+
+
+/*********************************************************************************/
+
+#footer {
+    overflow: hidden;
+    padding: 5em 0em;
+    background: #E3F0F7;
+    text-align: center;
+}
+
+#footer .fbox1,
+#footer .fbox2,
+#footer .fbox3 {
+    float: left;
+    width: 320px;
+    padding: 0px 40px 0px 40px;
+}
+
+#footer .icon {
+    display: block;
+    margin-bottom: 1em;
+    font-size: 3em;
+}
+
+#footer .title span {
+    color: rgba(255, 255, 255, 0.4);
+}
+
+
+/*********************************************************************************/
+
+
+/* Search Bar and Filters                                                                       */
+
+
+/*********************************************************************************/
+
+.search {
+    width: 100%;
+    position: relative;
+    display: flex;
+}
+
+.searchTerm {
+    width: 100%;
+    border: 3px solid #2056ac;
+    border-right: none;
+    padding: 5px;
+    height: 40px;
+    border-radius: 5px 0 0 5px;
+    outline: none;
+    color: #9DBFAF;
+}
+
+.searchTerm:focus {
+    color: #2056ac;
+}
+
+.searchButton {
+    width: 100px;
+    height: 40px;
+    border: 1px solid #2056ac;
+    background: #2056ac;
+    text-align: center;
+    color: #fff;
+    border-radius: 0 5px 5px 0;
+    cursor: pointer;
+    font-size: 20px;
+}
+
+
+/*Resize the wrap to see the search bar change!*/
+
+.wrap {
+    width: 40%;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+
+/*********************************************************************************/
+
+
+/* Footer                                                                        */
+
+
+/*********************************************************************************/
+
+#footer {
+    overflow: hidden;
+    padding: 5em 0em;
+    background: #E3F0F7;
+    text-align: center;
+}
+
+#footer .fbox1,
+#footer .fbox2,
+#footer .fbox3 {
+    float: left;
+    width: 320px;
+    padding: 0px 40px 0px 40px;
+}
+
+#footer .icon {
+    display: block;
+    margin-bottom: 1em;
+    font-size: 3em;
+}
+
+#footer .title span {
+    color: rgba(255, 255, 255, 0.4);
+}
