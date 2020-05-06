@@ -7,7 +7,7 @@
 3. Deploy `webpage/` with the web server of your choice
 
 ## UML Diagram
-![ER Diagram](https://github.com/JacobHearst/lab-grading/raw/master/er-diagram.png)
+![ER Diagram](https://github.com/JacobHearst/lab-grading/raw/master/uml.png)
 
 ## Style Guidelines
 This project follows the class style guidelines provided for CS358
