@@ -7,6 +7,8 @@ if (!isset($_GET['labId'])) {
     $labId = (int)$_GET['labId'];
 }
 
+include '../database.php';
+
 // Are we creating or modifying a note?
 if (isset($_POST['note'])) {
   $query = '';
@@ -23,12 +25,11 @@ if (isset($_POST['note'])) {
     $params = array($labId, 1, $_POST['note']);
   }
 
-  include '../database.php';
   execQuery($query, $params);
 }
 
 $selectQuery = 'SELECT * FROM Notes WHERE LabId=?';
-$notes = execQuery($selectQuery, $labId);
+$notes = execQuery($selectQuery, array($labId))->fetchAll(PDO::FETCH_ASSOC);
 
 ?>
 
@@ -40,7 +41,6 @@ $notes = execQuery($selectQuery, $labId);
       <link rel="stylesheet" type="text/css" href="LabNotes/style_labNotes.css">
   </head>
 
-<<<<<<< Updated upstream
   <body>
     <h1>Lab Grading Tool</h1>
     <h2>Programmed by: Agile Experience Group 4</h2>
@@ -49,42 +49,28 @@ $notes = execQuery($selectQuery, $labId);
     <br>
     <hr>
       <h2>Add/Edit Lab Notes:</h2>
-      <form method="POST" id="add-note-form">
-        <label class="inline-block">Editing note:</label>
-        <!-- TODO: Update this field when a user clicks a button to edit a note -->
-        <input id="note-id" class="inline-block" name="noteId" type="text" disabled/>
-        <textarea class="block" name="note" rows=16 cols=32></textarea>
-        <button type=button onclick="resetNoteId()">Clear note ID</button>
-        <input type="submit" value="Submit"/>
-      </form>
-      <ul id="current-notes">
-        <!-- Current notes go here. Doesn't need to be a list, that's just what I thought would work best-->
-      </ul>
-=======
-	<body>
-		<h1>Lab Grading Tool</h1>
-		<h2>Programmed by: Agile Experience Group 4</h2>
-		<h4><a href="../">Return to main page.</a></h4>
-		
-		<br>
-		<hr>
-		
-        <h2>Add/Edit Lab Notes:</h2>
+      <div id="notes-wrapper">
         <form method="POST" id="add-note-form">
             <label class="inline-block">Editing note:</label>
             <!-- TODO: Update this field when a user clicks a button to edit a note -->
-            <input id="note-id" class="inline-block" name="noteId" type="text" disabled/>
-            <textarea class="block" name="note" rows=16 cols=32></textarea>
+            <input id="note-id" class="inline-block" name="noteId" type="text" readonly/>
+            <textarea id="note-textarea" class="block" name="note" maxlength=100 rows=4 cols=25 required></textarea>
             <button type=button onclick="resetNoteId()">Clear note ID</button>
             <input type="submit" value="Submit"/>
         </form>
-        <ul id="current-notes">
-			<?php 
-			foreach($notes as $note) { ?>
-				<li><?php $note['Note']?></li>
-			<?php } ?>
-        </ul>
->>>>>>> Stashed changes
+        <div id="notes-list-wrapper">
+            <h3>Current notes</h3>
+            <ul id="current-notes">
+                <?php 
+                    foreach($notes as $note) { ?>
+                        <li>
+                            <p class="note-list-item"><?=$note['Note']?></p>
+                            <button onclick="editNote(<?=$note['Id']?>, '<?=$note['Note']?>')">Edit</button>
+                        </li>
+                    <?php } ?>
+            </ul>
+        </div>
+    </div>
 
       <script src="LabNotes/main.js"></script>
   </body>

@@ -6,6 +6,20 @@ h1, h2, h4 {
   text-align: center;
 }
 
+textarea {
+    resize: none;
+}
+
+#notes-wrapper {
+    width: 50%;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+#notes-wrapper > h3 {
+    text-align: center;
+}
+
 #add-note-form {
   float:left;
 }
@@ -22,7 +36,23 @@ h1, h2, h4 {
   display: inline-block;
 }
 
+#notes-list-wrapper {
+    height: 400px;
+    padding: 15px;
+    overflow-y: auto;
+}
+
+#notes-list-wrapper > h3 {
+    text-align: center;
+    padding-bottom: 0;
+}
+
 #current-notes {
   list-style-type: none;
   float: right;
+}
+
+#current-notes > li {
+    padding-bottom: 5px;
+    border-bottom: 1px solid gray;
 }

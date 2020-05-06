@@ -12,3 +12,8 @@ function resetNoteId() {
 function setNoteId(id) {
   noteIdField.value = id
 }
+
+function editNote(id, note) {
+    document.getElementById('note-textarea').value = note;
+    setNoteId(id)
+}
