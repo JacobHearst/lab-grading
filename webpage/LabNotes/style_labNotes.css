@@ -182,6 +182,36 @@ h4 {
     float: right;
 }
 
+textarea {
+    resize: none;
+}
+
+#notes-wrapper {
+    width: 50%;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+#notes-wrapper > h3 {
+    text-align: center;
+}
+
+#notes-list-wrapper {
+    height: 400px;
+    padding: 15px;
+    overflow-y: auto;
+}
+
+#notes-list-wrapper > h3 {
+    text-align: center;
+    padding-bottom: 0;
+}
+
+#current-notes > li {
+    padding-bottom: 5px;
+    border-bottom: 1px solid gray;
+}
+
 
 /*********************************************************************************/
 

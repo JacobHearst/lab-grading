@@ -25,7 +25,6 @@ if (isset($_POST['note'])) {
     $params = array($labId, 1, $_POST['note']);
   }
 
-  include '../database.php';
   execQuery($query, $params);
 }
 
@@ -65,9 +64,8 @@ $notes = execQuery($selectQuery, array($labId))->fetchAll(PDO::FETCH_ASSOC);
       <h2>Add/Edit Lab Notes:</h2>
       <form method="POST" id="add-note-form">
         <label>Editing note:</label>
-        <!-- TODO: Update this field when a user clicks a button to edit a note -->
-        <input id="note-id" class="inline-block" name="noteId" type="text" disabled />
-        <textarea class="block" name="note" rows=16 cols=64></textarea>
+        <input id="note-id" class="inline-block" name="noteId" type="text" readonly/>
+        <textarea id="note-textarea" class="block" name="note" maxlength=100 rows=4 cols=25 required></textarea>
         <button type=button onclick="resetNoteId()">Clear note ID</button>
         <input type="submit" value="Submit" />
       </form>
